@@ -1,0 +1,9 @@
+.postContainer {
+  display: grid;
+  gap: 16px;
+
+  .content {
+    display: flex;
+    gap: 8px;
+  }
+}
