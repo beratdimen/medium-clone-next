@@ -1,5 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import "./posts.css";
+import NewComments from "@/components/main-comments/page";
+import CommentsList from "../main-comments-list";
 
 export default async function Posts() {
   const supabase = createClient();
@@ -26,6 +28,8 @@ export default async function Posts() {
             <div className="content">
               <p>{post.content}</p>
               <p>{formattedDate}</p>
+              <CommentsList commentId={post.id} />
+              <NewComments postId={post.id} />
             </div>
           </div>
         );

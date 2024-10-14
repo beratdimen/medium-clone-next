@@ -15,6 +15,7 @@ export default async function PostDetailPage({ params }) {
     <div>
       <h1>{data.title}</h1>
       <p>{data.content}</p>
+      <p>{data.created_at}</p>
     </div>
   );
 }
