@@ -1,0 +1,13 @@
+.commentListContainer {
+  ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+  }
+}

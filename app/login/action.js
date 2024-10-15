@@ -5,6 +5,11 @@ import { redirect } from "next/navigation";
 
 import { createClient } from "@/utils/supabase/server";
 
+const defaultUserMetadata = {
+  firstName: "",
+  lastName: "",
+};
+
 export async function login(formData) {
   const supabase = createClient();
 
@@ -31,12 +36,19 @@ export async function signup(formData) {
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
-  const data = {
+  const {
+    data: { user, error },
+  } = await supabase.auth.signUp({
     email: formData.get("email"),
     password: formData.get("password"),
-  };
-
-  const { error } = await supabase.auth.signUp(data);
+    options: {
+      data: {
+        ...defaultUserMetadata,
+        firstName: formData.get("firstName"),
+        lastName: formData.get("lastName"),
+      },
+    },
+  });
 
   if (error) {
     console.log(error);

@@ -8,6 +8,7 @@ export async function SaveComments(formData) {
   const commentId = Number(formObj.commentItem);
   const content = formObj.content;
   const supabase = createClient();
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -26,5 +27,5 @@ export async function SaveComments(formData) {
   if (error) {
     console.log(error);
   }
-  console.log(commentId);
+  redirect("/posts");
 }

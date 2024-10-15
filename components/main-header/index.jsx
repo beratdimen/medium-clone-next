@@ -12,17 +12,30 @@ export default async function MainHeader() {
 
   return (
     <header>
-      <h1>LOGO</h1>
+      <Link href={"/"}>
+        <h1>LOGO</h1>
+      </Link>
       <ul>
-        <li>Anasayfa</li>
-        <li>Hakkımızda</li>
-        <li>Postlar</li>
-        <li>İletişim</li>
+        <Link href={"/"}>
+          <li>Anasayfa</li>
+        </Link>
+        <Link href={"hakkimizda"}>
+          <li>Hakkımızda</li>
+        </Link>
+
+        <Link href={"/posts"}>
+          <li>Postlar</li>
+        </Link>
+        <Link href={"iletisim"}>
+          <li>İletişim</li>
+        </Link>
       </ul>
 
       {user ? (
         <ul>
-          <li>Hoş geldin , {user.email}</li>
+          <li>
+            {user.user_metadata.firstName} {user.user_metadata.lastName}
+          </li>
           <li>
             <form action={signout}>
               <button>Çıkış Yap</button>

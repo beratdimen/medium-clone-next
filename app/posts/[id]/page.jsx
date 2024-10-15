@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { notFound } from "next/navigation";
 
-export default async function PostDetailPage({ params }) {
+export default async function PostDetailPage({ params, commentId }) {
   const supabase = createClient();
   const { data, error } = await supabase
     .from("posts")

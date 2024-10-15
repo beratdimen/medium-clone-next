@@ -2,6 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 import "./posts.css";
 import NewComments from "@/components/main-comments/page";
 import CommentsList from "../main-comments-list";
+import MainHeader from "../main-header";
 
 export default async function Posts() {
   const supabase = createClient();
@@ -11,6 +12,8 @@ export default async function Posts() {
 
   return (
     <div>
+      <MainHeader />
+
       {posts.map((post) => {
         const date = new Date(post.created_at);
         const formattedDate = `${date.getDate().toString().padStart(2, "0")}/${(

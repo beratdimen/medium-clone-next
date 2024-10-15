@@ -1,4 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
+import "./commentList.css";
 
 export default async function CommentsList({ commentId }) {
   const supabase = createClient();
@@ -8,12 +9,12 @@ export default async function CommentsList({ commentId }) {
     .eq("post_id", commentId);
 
   return (
-    <div>
-      {comments.map((comment) => (
-        <div key={comment.id}>
-          <p> {comment.content}</p>
-        </div>
-      ))}
+    <div className="commentListContainer">
+      <ul>
+        {comments.map((comment) => (
+          <li key={comment.id}> {comment.content}</li>
+        ))}
+      </ul>
     </div>
   );
 }
