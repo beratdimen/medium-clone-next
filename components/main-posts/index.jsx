@@ -3,11 +3,16 @@ import "./posts.css";
 import NewComments from "@/components/main-comments/page";
 import CommentsList from "../main-comments-list";
 import MainHeader from "../main-header";
+import PostLikeButton from "../post-like-button";
+import PostLikeSayisi from "../post-like-sayisi";
 
 export default async function Posts() {
   const supabase = createClient();
-  let { data: posts, error } = await supabase.from("posts").select("*");
+  let { data: posts, error } = await supabase
+    .from("posts")
+    .select("*, postLike(*)");
 
+  console.log("posts :>> ", posts);
   if (!posts) return notFound();
 
   return (
@@ -31,6 +36,8 @@ export default async function Posts() {
             <div className="content">
               <p>{post.content}</p>
               <p>{formattedDate}</p>
+              Favlama sayısı <PostLikeSayisi postId={post.id} />
+              <PostLikeButton userId={post.user_id} postId={post.id} />
               <CommentsList commentId={post.id} />
               <NewComments postId={post.id} />
             </div>
