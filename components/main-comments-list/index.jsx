@@ -14,14 +14,16 @@ export default async function CommentsList({ commentId }) {
     <div className="commentListContainer">
       <ul>
         {comments.map((comment) => (
-          <ul key={comment.id}>
-            <li> {comment.content}</li>
-            <CommentLikeButton
-              userId={comment.user_id}
-              commentId={comment.id}
-            />
-            <CommentLikeSayisi commentId={comment.id} />
-          </ul>
+          <li key={comment.id}>
+            <p> {comment.content}</p>
+            <span>
+              <CommentLikeButton
+                userId={comment.user_id}
+                commentId={comment.id}
+              />
+              <CommentLikeSayisi commentId={comment.id} />
+            </span>
+          </li>
         ))}
       </ul>
     </div>
