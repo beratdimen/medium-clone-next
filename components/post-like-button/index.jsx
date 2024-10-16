@@ -1,7 +1,9 @@
 "use client";
 
+import { BackLikeIcon, LikeIcon } from "@/helpers/icons";
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
+import "./postLike.css";
 
 export default function PostLikeButton({ postId }) {
   const supabase = createClient();
@@ -63,8 +65,11 @@ export default function PostLikeButton({ postId }) {
   }, [postId]);
 
   return (
-    <button onClick={() => (postLike ? deletePostLike() : fav())}>
-      {postLike ? "Favdan Cıkar" : "Favla"}
+    <button
+      className="likeIcon"
+      onClick={() => (postLike ? deletePostLike() : fav())}
+    >
+      {postLike ? <BackLikeIcon /> : <LikeIcon />}
     </button>
   );
 }
