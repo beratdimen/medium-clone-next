@@ -3,33 +3,33 @@
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
 
-export default function PostLikeButton({ postId }) {
+export default function BookMarksButton({ postId }) {
   const supabase = createClient();
 
-  const [postLike, setPostLike] = useState(false);
+  const [bookMarks, setBookMarks] = useState(false);
 
-  const fav = async () => {
+  const addSave = async () => {
     const {
       data: { user },
       error: userError,
     } = await supabase.auth.getUser();
 
     const { data, error } = await supabase
-      .from("postLike")
+      .from("bookMarks")
       .insert([{ user_id: user.id, post_id: postId }])
       .select();
 
     if (error) console.log("error :>> ", error);
   };
 
-  const deletePostLike = async () => {
+  const deleteSave = async () => {
     const {
       data: { user },
       error: userError,
     } = await supabase.auth.getUser();
 
     const { data, error } = await supabase
-      .from("postLike")
+      .from("bookMarks")
       .delete()
       .eq("user_id", user.id)
       .eq("post_id", postId);
@@ -38,20 +38,20 @@ export default function PostLikeButton({ postId }) {
   };
 
   useEffect(() => {
-    const fetchFavMıDegilMi = async () => {
+    const isAddedSave = async () => {
       const {
         data: { user },
         error: userError,
       } = await supabase.auth.getUser();
 
       let { data, error } = await supabase
-        .from("postLike")
+        .from("bookMarks")
         .select("*")
         .eq("user_id", user.id)
         .eq("post_id", postId);
 
       if (data.length > 0) {
-        setPostLike(true);
+        setBookMarks(true);
       }
 
       if (error) {
@@ -59,12 +59,12 @@ export default function PostLikeButton({ postId }) {
       }
     };
 
-    fetchFavMıDegilMi();
+    isAddedSave();
   }, [postId]);
 
   return (
-    <button onClick={() => (postLike ? deletePostLike() : fav())}>
-      {postLike ? "Favdan Cıkar" : "Favla"}
+    <button onClick={() => (bookMarks ? deleteSave() : addSave())}>
+      {bookMarks ? "Kaydedilenden Cıkar" : "Kaydet"}
     </button>
   );
 }
