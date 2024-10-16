@@ -1,5 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import "./commentList.css";
+import CommentLikeButton from "../comments-like-button";
+import CommentLikeSayisi from "../comments-like-sayisi";
 
 export default async function CommentsList({ commentId }) {
   const supabase = createClient();
@@ -12,7 +14,14 @@ export default async function CommentsList({ commentId }) {
     <div className="commentListContainer">
       <ul>
         {comments.map((comment) => (
-          <li key={comment.id}> {comment.content}</li>
+          <ul key={comment.id}>
+            <li> {comment.content}</li>
+            <CommentLikeButton
+              userId={comment.user_id}
+              commentId={comment.id}
+            />
+            <CommentLikeSayisi commentId={comment.id} />
+          </ul>
         ))}
       </ul>
     </div>

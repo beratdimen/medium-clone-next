@@ -5,6 +5,7 @@ import CommentsList from "../main-comments-list";
 import MainHeader from "../main-header";
 import PostLikeButton from "../post-like-button";
 import PostLikeSayisi from "../post-like-sayisi";
+import BookMarksButton from "../book-marks-save-button";
 
 export default async function Posts() {
   const supabase = createClient();
@@ -41,6 +42,7 @@ export default async function Posts() {
               <CommentsList commentId={post.id} />
               <NewComments postId={post.id} />
             </div>
+            <BookMarksButton userId={post.user_id} postId={post.id} />
           </div>
         );
       })}
