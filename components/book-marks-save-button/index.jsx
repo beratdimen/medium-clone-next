@@ -1,7 +1,10 @@
 "use client";
 
+import { BackSaveIcon, SaveIcon } from "@/helpers/icons";
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import "./bookMarks.css";
 
 export default function BookMarksButton({ postId }) {
   const supabase = createClient();
@@ -20,6 +23,7 @@ export default function BookMarksButton({ postId }) {
       .select();
 
     if (error) console.log("error :>> ", error);
+    toast.success("Kaydedildi");
   };
 
   const deleteSave = async () => {
@@ -35,6 +39,7 @@ export default function BookMarksButton({ postId }) {
       .eq("post_id", postId);
 
     if (error) console.log("error :>> ", error);
+    toast.info("Kaydedililenlerden Çıkarıldı");
   };
 
   useEffect(() => {
@@ -63,8 +68,11 @@ export default function BookMarksButton({ postId }) {
   }, [postId]);
 
   return (
-    <button onClick={() => (bookMarks ? deleteSave() : addSave())}>
-      {bookMarks ? "Kaydedilenden Cıkar" : "Kaydet"}
+    <button
+      className="saveBtn"
+      onClick={() => (bookMarks ? deleteSave() : addSave())}
+    >
+      {bookMarks ? <BackSaveIcon /> : <SaveIcon />}
     </button>
   );
 }
