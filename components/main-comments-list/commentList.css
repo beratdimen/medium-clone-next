@@ -5,9 +5,17 @@
     padding: 0;
 
     li {
-      margin: 0;
-      padding: 0;
-      flex-wrap: wrap;
+      display: flex;
+      justify-content: space-between;
+
+      p {
+        flex-wrap: wrap;
+      }
+
+      span {
+        display: flex;
+        gap: 4px;
+      }
     }
   }
 }

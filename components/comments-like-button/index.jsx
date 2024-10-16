@@ -1,8 +1,9 @@
 "use client";
 
+import { BackLikeIcon, LikeIcon } from "@/helpers/icons";
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
-
+import "./commentsLikeButton.css";
 export default function CommentLikeButton({ commentId }) {
   const supabase = createClient();
   const [commentsLike, setCommentsLike] = useState(false);
@@ -21,7 +22,7 @@ export default function CommentLikeButton({ commentId }) {
     if (error) {
       console.log("error :>> ", error);
     } else {
-      setCommentsLike(true); // Favori ekleme sonrası durumu güncelle
+      setCommentsLike(true);
     }
   };
 
@@ -40,7 +41,7 @@ export default function CommentLikeButton({ commentId }) {
     if (error) {
       console.log("error :>> ", error);
     } else {
-      setCommentsLike(false); // Favori çıkarma sonrası durumu güncelle
+      setCommentsLike(false);
     }
   };
 
@@ -54,13 +55,13 @@ export default function CommentLikeButton({ commentId }) {
       let { data, error } = await supabase
         .from("commentsLike")
         .select("*")
-        .eq("user_id", user.id)
+        .eq("user_id", user?.id)
         .eq("comment_id", commentId);
 
       if (data && data.length > 0) {
-        setCommentsLike(true); // Eğer kullanıcı bu yorumu beğendiyse, durumu güncelle
+        setCommentsLike(true);
       } else {
-        setCommentsLike(false); // Aksi durumda false olarak ayarla
+        setCommentsLike(false);
       }
 
       if (error) {
@@ -72,8 +73,11 @@ export default function CommentLikeButton({ commentId }) {
   }, [commentId]);
 
   return (
-    <button onClick={() => (commentsLike ? deletePostLike() : fav())}>
-      {commentsLike ? "Favdan Çıkar" : "Favla"}
+    <button
+      className="commentLikeBtn"
+      onClick={() => (commentsLike ? deletePostLike() : fav())}
+    >
+      {commentsLike ? <BackLikeIcon /> : <LikeIcon />}
     </button>
   );
 }

@@ -26,5 +26,5 @@ export default function CommentLikeSayisi({ commentId }) {
     fetchcommentsCount();
   }, [commentId]);
 
-  return <div>{error ? <p>{error}</p> : <p>Likes: {commentsCount}</p>}</div>;
+  return <div>{error ? <p>{error}</p> : <p>{commentsCount}</p>}</div>;
 }
