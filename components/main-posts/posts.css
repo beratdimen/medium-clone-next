@@ -1,13 +1,40 @@
 .postContainer {
+  max-width: 1110px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 16px;
+  border-bottom: 2px solid black;
+  padding-block: 16px;
+  margin: 0 auto;
+  width: fit-content;
 
-  .content {
+  .contentContainer {
+    .contentBody {
+      display: flex;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  .likeBtn {
     display: flex;
-    flex-direction: column;
+    gap: 4px;
+  }
+
+  .name {
+    text-transform: capitalize;
+  }
+
+  .contentFooter {
+    display: flex;
+    gap: 16px;
+  }
+  .postHeader {
+    display: flex;
     gap: 8px;
   }
 }

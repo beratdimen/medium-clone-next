@@ -25,5 +25,5 @@ export default function PostLikeSayisi({ postId }) {
     fetchPostCount();
   }, [postId]);
 
-  return <div>{error ? <p>{error}</p> : <p>Likes: {postCount}</p>}</div>;
+  return <div>{error ? <p>{error}</p> : <p>{postCount}</p>}</div>;
 }
