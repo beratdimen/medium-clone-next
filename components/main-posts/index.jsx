@@ -74,7 +74,7 @@ export default async function Posts() {
                 </p>
                 <div className="btns">
                   <PostLikeButton userId={post.user_id} postId={post.id} />
-                  <button className="commentsBtn">
+                  <button className="commentssBtn">
                     <CommentsIcon /> {commentCount}
                   </button>
                 </div>

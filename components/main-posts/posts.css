@@ -50,14 +50,14 @@
     .btns {
       display: flex;
       gap: 4px;
-
-      .commentsBtn {
-        display: flex;
-        border: none;
-        background: transparent;
-      }
     }
   }
+}
+
+.commentssBtn {
+  display: flex;
+  border: none;
+  background: transparent;
 }
 
 .addPost {
