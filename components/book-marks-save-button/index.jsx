@@ -17,17 +17,21 @@ export default function BookMarksButton({ postId }) {
       error: userError,
     } = await supabase.auth.getUser();
 
-    const { data, error } = await supabase
-      .from("bookMarks")
-      .insert([{ user_id: user?.id, post_id: postId }])
-      .select();
+    if (user) {
+      const { data, error } = await supabase
+        .from("bookMarks")
+        .insert([{ user_id: user?.id, post_id: postId }])
+        .select();
 
-    if (error) {
-      console.log("error :>> ", error);
+      if (error) {
+        console.log("error :>> ", error);
+      } else {
+        setBookMarks(true);
+      }
+      toast.success("Kaydedildi");
     } else {
-      setBookMarks(true);
+      toast.error("Giriş Yapmalısınız");
     }
-    toast.success("Kaydedildi");
   };
 
   const deleteSave = async () => {
@@ -63,7 +67,7 @@ export default function BookMarksButton({ postId }) {
         .eq("user_id", user?.id)
         .eq("post_id", postId);
 
-      if (data.length > 0) {
+      if (data?.length > 0) {
         setBookMarks(true);
       }
 

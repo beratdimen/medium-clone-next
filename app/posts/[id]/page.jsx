@@ -5,6 +5,7 @@ import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import "./postDetail.css";
+import BookMarksButton from "@/components/book-marks-save-button";
 
 export default async function PostDetailPage({ params }) {
   const supabase = createClient();
@@ -50,6 +51,7 @@ export default async function PostDetailPage({ params }) {
         <PostLikeButton userId={params.user_id} postId={params.id} />
 
         <OpenComments params={params} commentCount={commentCount} />
+        <BookMarksButton />
       </div>
 
       <Image alt="imageurl post" src={imageUrl} height={200} width={200} />

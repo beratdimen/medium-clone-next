@@ -5,6 +5,7 @@ import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
 import "./commentsLikeButton.css";
 import CommentLikeSayisi from "../comments-like-sayisi";
+import { toast } from "sonner";
 export default function CommentLikeButton({ commentId }) {
   const supabase = createClient();
   const [commentsLike, setCommentsLike] = useState(false);
@@ -15,15 +16,19 @@ export default function CommentLikeButton({ commentId }) {
       error: userError,
     } = await supabase.auth.getUser();
 
-    const { data, error } = await supabase
-      .from("commentsLike")
-      .insert([{ user_id: user?.id, comment_id: commentId }])
-      .select();
+    if (user) {
+      const { data, error } = await supabase
+        .from("commentsLike")
+        .insert([{ user_id: user?.id, comment_id: commentId }])
+        .select();
 
-    if (error) {
-      console.log("error :>> ", error);
+      if (error) {
+        console.log("error :>> ", error);
+      } else {
+        setCommentsLike(true);
+      }
     } else {
-      setCommentsLike(true);
+      toast.error("Giriş Yapmalısınız");
     }
   };
 
@@ -59,10 +64,8 @@ export default function CommentLikeButton({ commentId }) {
         .eq("user_id", user?.id)
         .eq("comment_id", commentId);
 
-      if (data && data.length > 0) {
+      if (data?.length > 0) {
         setCommentsLike(true);
-      } else {
-        setCommentsLike(false);
       }
 
       if (error) {

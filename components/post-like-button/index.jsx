@@ -5,6 +5,7 @@ import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
 import "./postLike.css";
 import PostLikeSayisi from "../post-like-sayisi";
+import { toast } from "sonner";
 
 export default function PostLikeButton({ postId }) {
   const supabase = createClient();
@@ -17,15 +18,19 @@ export default function PostLikeButton({ postId }) {
       error: userError,
     } = await supabase.auth.getUser();
 
-    const { data, error } = await supabase
-      .from("postLike")
-      .insert([{ user_id: user?.id, post_id: postId }])
-      .select();
+    if (user) {
+      const { data, error } = await supabase
+        .from("postLike")
+        .insert([{ user_id: user?.id, post_id: postId }])
+        .select();
 
-    if (error) {
-      console.log("error :>> ", error);
+      if (error) {
+        console.log("error :>> ", error);
+      } else {
+        setPostLike(true);
+      }
     } else {
-      setPostLike(true);
+      toast.error("Giriş Yapmlısınız");
     }
   };
 
