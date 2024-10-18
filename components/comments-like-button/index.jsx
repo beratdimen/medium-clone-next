@@ -38,16 +38,18 @@ export default function CommentLikeButton({ commentId }) {
       error: userError,
     } = await supabase.auth.getUser();
 
-    const { data, error } = await supabase
-      .from("commentsLike")
-      .delete()
-      .eq("user_id", user?.id)
-      .eq("comment_id", commentId);
+    if (user) {
+      const { data, error } = await supabase
+        .from("commentsLike")
+        .delete()
+        .eq("user_id", user?.id)
+        .eq("comment_id", commentId);
 
-    if (error) {
-      console.log("error :>> ", error);
-    } else {
-      setCommentsLike(false);
+      if (error) {
+        console.log("error :>> ", error);
+      } else {
+        setCommentsLike(false);
+      }
     }
   };
 

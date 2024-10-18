@@ -22,3 +22,15 @@
     height: fit-content;
   }
 }
+
+@media (max-width: 1024px) {
+  .detailPostContainer {
+    width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .detailPostContainer {
+    width: 375px;
+  }
+}

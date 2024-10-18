@@ -52,7 +52,7 @@ export default async function Posts() {
                   <Avatar />
                   <p className="name">
                     {user?.user_metadata.firstName}{" "}
-                    {user?.user_metadata.lastName}
+                    <span>{user?.user_metadata.lastName}</span>
                   </p>
                 </div>
                 <div className="contentContainer">

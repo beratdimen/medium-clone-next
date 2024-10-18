@@ -30,7 +30,7 @@ export default function PostLikeButton({ postId }) {
         setPostLike(true);
       }
     } else {
-      toast.error("Giriş Yapmlısınız");
+      toast.error("Giriş Yapmalısınız");
     }
   };
 
@@ -39,17 +39,18 @@ export default function PostLikeButton({ postId }) {
       data: { user },
       error: userError,
     } = await supabase.auth.getUser();
+    if (user) {
+      const { data, error } = await supabase
+        .from("postLike")
+        .delete()
+        .eq("user_id", user?.id)
+        .eq("post_id", postId);
 
-    const { data, error } = await supabase
-      .from("postLike")
-      .delete()
-      .eq("user_id", user?.id)
-      .eq("post_id", postId);
-
-    if (error) {
-      console.log("error :>> ", error);
-    } else {
-      setPostLike(false);
+      if (error) {
+        console.log("error :>> ", error);
+      } else {
+        setPostLike(false);
+      }
     }
   };
 

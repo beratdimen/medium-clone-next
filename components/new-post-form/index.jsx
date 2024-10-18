@@ -1,9 +1,8 @@
 "use client";
 import { SavePost } from "@/app/(main)/new-post/action";
-import { useFormState } from "react-dom";
 import "./style.css";
 
-export default function NewPost({ errorsState }) {
+export default function NewPost() {
   return (
     <div className="postContainer">
       <h1>Post Ekle</h1>

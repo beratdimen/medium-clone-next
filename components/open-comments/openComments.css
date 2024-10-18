@@ -23,9 +23,23 @@
   }
 }
 
+/* .ss {
+  display: none;
+} */
+
 .commentsBtn {
   display: flex;
   border: none;
   background: transparent;
   cursor: pointer;
 }
+/* 
+@media (max-width: 1024px) {
+  .commentsRightSideBar {
+    width: 50%;
+    transition: all 1s;
+  }
+  .ss {
+    display: none;
+  }
+} */

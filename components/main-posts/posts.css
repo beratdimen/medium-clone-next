@@ -4,7 +4,7 @@
   flex-direction: column;
   gap: 16px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.144);
-  padding-block: 16px;
+  padding-block: 32px;
   margin: 0 auto;
 
   .postCard {
@@ -25,6 +25,7 @@
         h1 {
           flex-wrap: wrap;
         }
+
         p {
           flex-wrap: wrap;
         }

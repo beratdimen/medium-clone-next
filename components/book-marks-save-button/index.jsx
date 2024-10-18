@@ -40,18 +40,20 @@ export default function BookMarksButton({ postId }) {
       error: userError,
     } = await supabase.auth.getUser();
 
-    const { data, error } = await supabase
-      .from("bookMarks")
-      .delete()
-      .eq("user_id", user?.id)
-      .eq("post_id", postId);
+    if (user) {
+      const { data, error } = await supabase
+        .from("bookMarks")
+        .delete()
+        .eq("user_id", user?.id)
+        .eq("post_id", postId);
 
-    if (error) {
-      console.log("error :>> ", error);
-    } else {
-      setBookMarks(false);
+      if (error) {
+        console.log("error :>> ", error);
+      } else {
+        setBookMarks(false);
+      }
+      toast.info("Kaydedililenlerden Çıkarıldı");
     }
-    toast.info("Kaydedililenlerden Çıkarıldı");
   };
 
   useEffect(() => {
