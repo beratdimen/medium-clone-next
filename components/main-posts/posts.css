@@ -39,18 +39,25 @@
 
   .contentFooter {
     display: flex;
+    align-items: center;
     gap: 16px;
 
     .stars {
       display: flex;
+      align-items: center;
+
       gap: 8px;
     }
+
     .btns {
       display: flex;
+      align-items: center;
+
       gap: 4px;
 
       .commentsBtn {
         display: flex;
+        align-items: center;
         border: none;
         background: transparent;
       }
