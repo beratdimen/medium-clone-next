@@ -56,18 +56,16 @@ export default async function Posts() {
                   </p>
                 </div>
                 <div className="contentContainer">
-                  <div className="contentBody">
-                    <div className="content">
-                      <h1>{post.title}</h1>
-                      <p>{post.content}</p>
-                    </div>
-                    <Image
-                      alt="imageurl post"
-                      src={imageUrl}
-                      height={100}
-                      width={100}
-                    />
+                  <div className="content">
+                    <h1>{post.title}</h1>
+                    <p>{post.content}</p>
                   </div>
+                  <Image
+                    alt="imageurl post"
+                    src={imageUrl}
+                    height={100}
+                    width={100}
+                  />
                 </div>
               </Link>
               <div className="contentFooter">

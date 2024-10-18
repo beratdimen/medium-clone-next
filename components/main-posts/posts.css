@@ -12,11 +12,6 @@
     color: black;
 
     .contentContainer {
-      .contentBody {
-        display: flex;
-        justify-content: space-between;
-      }
-
       .content {
         display: flex;
         flex-direction: column;
@@ -41,6 +36,7 @@
       gap: 8px;
     }
   }
+
   .contentFooter {
     display: flex;
     gap: 16px;
