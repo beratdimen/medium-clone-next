@@ -231,7 +231,3 @@ export function CloseIcon() {
     </svg>
   );
 }
-
-export function DenemeIcon() {
-  return deneme;
-}
