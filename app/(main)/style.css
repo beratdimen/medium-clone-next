@@ -1,6 +1,7 @@
 .homeContainer {
   margin-inline: 24px;
 }
+
 .addPost {
   display: flex;
   a {
