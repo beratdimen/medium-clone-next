@@ -12,6 +12,10 @@
     color: black;
 
     .contentContainer {
+      display: flex;
+
+      justify-content: space-between;
+
       .content {
         display: flex;
         flex-direction: column;
@@ -20,7 +24,6 @@
         h1 {
           flex-wrap: wrap;
         }
-
         p {
           flex-wrap: wrap;
         }
@@ -36,28 +39,20 @@
       gap: 8px;
     }
   }
-
   .contentFooter {
     display: flex;
-    align-items: center;
     gap: 16px;
 
     .stars {
       display: flex;
-      align-items: center;
-
       gap: 8px;
     }
-
     .btns {
       display: flex;
-      align-items: center;
-
       gap: 4px;
 
       .commentsBtn {
         display: flex;
-        align-items: center;
         border: none;
         background: transparent;
       }
