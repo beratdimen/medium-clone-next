@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 
-export default function CommentLikeSayisi({ commentId }) {
+export default function CommentLikeSayisi({ commentId, commentsLike }) {
   const [commentsCount, setCommentsCount] = useState(0);
   const [error, setError] = useState(null);
 
@@ -24,7 +24,7 @@ export default function CommentLikeSayisi({ commentId }) {
     };
 
     fetchcommentsCount();
-  }, [commentId]);
+  }, [commentId, commentsLike]);
 
   return <div>{error ? <p>{error}</p> : <p>{commentsCount}</p>}</div>;
 }

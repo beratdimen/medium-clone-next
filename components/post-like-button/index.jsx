@@ -4,6 +4,7 @@ import { BackLikeIcon, LikeIcon } from "@/helpers/icons";
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
 import "./postLike.css";
+import PostLikeSayisi from "../post-like-sayisi";
 
 export default function PostLikeButton({ postId }) {
   const supabase = createClient();
@@ -18,10 +19,14 @@ export default function PostLikeButton({ postId }) {
 
     const { data, error } = await supabase
       .from("postLike")
-      .insert([{ user_id: user.id, post_id: postId }])
+      .insert([{ user_id: user?.id, post_id: postId }])
       .select();
 
-    if (error) console.log("error :>> ", error);
+    if (error) {
+      console.log("error :>> ", error);
+    } else {
+      setPostLike(true);
+    }
   };
 
   const deletePostLike = async () => {
@@ -33,10 +38,14 @@ export default function PostLikeButton({ postId }) {
     const { data, error } = await supabase
       .from("postLike")
       .delete()
-      .eq("user_id", user.id)
+      .eq("user_id", user?.id)
       .eq("post_id", postId);
 
-    if (error) console.log("error :>> ", error);
+    if (error) {
+      console.log("error :>> ", error);
+    } else {
+      setPostLike(false);
+    }
   };
 
   useEffect(() => {
@@ -49,10 +58,10 @@ export default function PostLikeButton({ postId }) {
       let { data, error } = await supabase
         .from("postLike")
         .select("*")
-        .eq("user_id", user.id)
+        .eq("user_id", user?.id)
         .eq("post_id", postId);
 
-      if (data.length > 0) {
+      if (data?.length > 0) {
         setPostLike(true);
       }
 
@@ -65,11 +74,14 @@ export default function PostLikeButton({ postId }) {
   }, [postId]);
 
   return (
-    <button
-      className="likeIcon"
-      onClick={() => (postLike ? deletePostLike() : fav())}
-    >
-      {postLike ? <BackLikeIcon /> : <LikeIcon />}
-    </button>
+    <>
+      <button
+        className="likeIcon"
+        onClick={() => (postLike ? deletePostLike() : fav())}
+      >
+        {postLike ? <BackLikeIcon /> : <LikeIcon />}
+      </button>
+      <PostLikeSayisi postId={postId} postLike={postLike} />
+    </>
   );
 }

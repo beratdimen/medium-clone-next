@@ -1,0 +1,24 @@
+.detailPostContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 800px;
+  margin: 0 auto;
+
+  .contentsContainer {
+    align-items: start;
+    justify-content: space-between;
+  }
+  .icons {
+    display: flex;
+    gap: 8px;
+    p {
+      display: flex;
+    }
+  }
+
+  img {
+    width: fit-content;
+    height: fit-content;
+  }
+}

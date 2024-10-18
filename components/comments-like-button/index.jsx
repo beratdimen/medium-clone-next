@@ -4,6 +4,7 @@ import { BackLikeIcon, LikeIcon } from "@/helpers/icons";
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
 import "./commentsLikeButton.css";
+import CommentLikeSayisi from "../comments-like-sayisi";
 export default function CommentLikeButton({ commentId }) {
   const supabase = createClient();
   const [commentsLike, setCommentsLike] = useState(false);
@@ -16,7 +17,7 @@ export default function CommentLikeButton({ commentId }) {
 
     const { data, error } = await supabase
       .from("commentsLike")
-      .insert([{ user_id: user.id, comment_id: commentId }])
+      .insert([{ user_id: user?.id, comment_id: commentId }])
       .select();
 
     if (error) {
@@ -35,7 +36,7 @@ export default function CommentLikeButton({ commentId }) {
     const { data, error } = await supabase
       .from("commentsLike")
       .delete()
-      .eq("user_id", user.id)
+      .eq("user_id", user?.id)
       .eq("comment_id", commentId);
 
     if (error) {
@@ -73,11 +74,14 @@ export default function CommentLikeButton({ commentId }) {
   }, [commentId]);
 
   return (
-    <button
-      className="commentLikeBtn"
-      onClick={() => (commentsLike ? deletePostLike() : fav())}
-    >
-      {commentsLike ? <BackLikeIcon /> : <LikeIcon />}
-    </button>
+    <div className="likeCountControl">
+      <button
+        className="commentLikeBtn"
+        onClick={() => (commentsLike ? deletePostLike() : fav())}
+      >
+        {commentsLike ? <BackLikeIcon /> : <LikeIcon />}
+      </button>
+      <CommentLikeSayisi commentId={commentId} commentsLike={commentsLike} />
+    </div>
   );
 }

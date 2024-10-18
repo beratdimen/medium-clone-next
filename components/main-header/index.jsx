@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 
 import "./header.css";
+import { AddIcon, LogoutIcon } from "@/helpers/icons";
 
 export default async function MainHeader() {
   const supabase = createClient();
@@ -34,11 +35,21 @@ export default async function MainHeader() {
       {user ? (
         <ul>
           <li>
+            <Link className="addPost" href={"/new-post"}>
+              <p>
+                Post Ekle
+                <AddIcon />
+              </p>
+            </Link>
+          </li>
+          <li>
             {user.user_metadata.firstName} {user.user_metadata.lastName}
           </li>
           <li>
             <form action={signout}>
-              <button>Çıkış Yap</button>
+              <button>
+                <LogoutIcon />
+              </button>
             </form>
           </li>
         </ul>

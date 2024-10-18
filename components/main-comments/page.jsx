@@ -1,3 +1,4 @@
+"use client";
 import { SaveComments } from "./action";
 import "./commentsForm.css";
 

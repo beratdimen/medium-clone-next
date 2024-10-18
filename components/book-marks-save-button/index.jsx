@@ -19,10 +19,14 @@ export default function BookMarksButton({ postId }) {
 
     const { data, error } = await supabase
       .from("bookMarks")
-      .insert([{ user_id: user.id, post_id: postId }])
+      .insert([{ user_id: user?.id, post_id: postId }])
       .select();
 
-    if (error) console.log("error :>> ", error);
+    if (error) {
+      console.log("error :>> ", error);
+    } else {
+      setBookMarks(true);
+    }
     toast.success("Kaydedildi");
   };
 
@@ -35,10 +39,14 @@ export default function BookMarksButton({ postId }) {
     const { data, error } = await supabase
       .from("bookMarks")
       .delete()
-      .eq("user_id", user.id)
+      .eq("user_id", user?.id)
       .eq("post_id", postId);
 
-    if (error) console.log("error :>> ", error);
+    if (error) {
+      console.log("error :>> ", error);
+    } else {
+      setBookMarks(false);
+    }
     toast.info("Kaydedililenlerden Çıkarıldı");
   };
 
@@ -52,7 +60,7 @@ export default function BookMarksButton({ postId }) {
       let { data, error } = await supabase
         .from("bookMarks")
         .select("*")
-        .eq("user_id", user.id)
+        .eq("user_id", user?.id)
         .eq("post_id", postId);
 
       if (data.length > 0) {

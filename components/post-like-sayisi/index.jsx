@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 
-export default function PostLikeSayisi({ postId }) {
+export default function PostLikeSayisi({ postId, postLike }) {
   const [postCount, setPostCount] = useState(0);
   const [error, setError] = useState(null);
 
@@ -23,7 +23,7 @@ export default function PostLikeSayisi({ postId }) {
     };
 
     fetchPostCount();
-  }, [postId]);
+  }, [postId, postLike]);
 
   return <div>{error ? <p>{error}</p> : <p>{postCount}</p>}</div>;
 }

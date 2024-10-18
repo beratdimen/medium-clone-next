@@ -19,7 +19,7 @@ export async function SavePost(formData) {
 
   const { data, error } = await supabase
     .from("posts")
-    .insert({ title, content, user_id: user.id })
+    .insert({ title, content, user_id: user?.id })
     .select()
     .single();
 

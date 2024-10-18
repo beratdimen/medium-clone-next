@@ -3,38 +3,71 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.144);
   padding-block: 16px;
   margin: 0 auto;
-  width: fit-content;
+  width: 1110px;
 
-  .contentContainer {
-    .contentBody {
-      display: flex;
+  .postCard {
+    text-decoration: none;
+    color: black;
+
+    .contentContainer {
+      .contentBody {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        h1 {
+          flex-wrap: wrap;
+        }
+        p {
+          flex-wrap: wrap;
+        }
+      }
     }
 
-    .content {
+    .name {
+      text-transform: capitalize;
+    }
+
+    .postHeader {
       display: flex;
-      flex-direction: column;
       gap: 8px;
     }
   }
-
-  .likeBtn {
-    display: flex;
-    gap: 4px;
-  }
-
-  .name {
-    text-transform: capitalize;
-  }
-
   .contentFooter {
     display: flex;
     gap: 16px;
+
+    .stars {
+      display: flex;
+      gap: 8px;
+    }
+    .btns {
+      display: flex;
+      gap: 4px;
+
+      .commentsBtn {
+        display: flex;
+        border: none;
+        background: transparent;
+      }
+    }
   }
-  .postHeader {
+}
+
+.addPost {
+  text-decoration: none;
+
+  p {
     display: flex;
-    gap: 8px;
+    gap: 6px;
+    color: black;
   }
 }

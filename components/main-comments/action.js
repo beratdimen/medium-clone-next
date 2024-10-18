@@ -20,7 +20,7 @@ export async function SaveComments(formData) {
 
   const { data, error } = await supabase
     .from("comments")
-    .insert({ content, user_id: user.id, post_id: commentId })
+    .insert({ content, user_id: user?.id, post_id: commentId })
     .select()
     .single();
 
